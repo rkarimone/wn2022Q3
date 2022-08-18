@@ -1,3 +1,29 @@
+# Previous Records
+
+root@logserver:~# zpool status
+  pool: volume1
+ state: ONLINE
+  scan: resilvered 73.7G in 01:22:14 with 0 errors on Tue Mar 15 21:32:44 2022
+config:
+
+	NAME                                        STATE     READ WRITE CKSUM
+	volume1                                     ONLINE       0     0     0
+	  raidz3-0                                  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16d5c0d673cf4  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16d9410bcd155  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16db512b734c1  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16dc913f23591  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16df41680d5da  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16e061795cd46  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0029c3399f06e53e56  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0029c339b40823f96d  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16e3b1ab9a467  ONLINE       0     0     0
+	    scsi-36c81f660d1b45f0028e16e541c3adcff  ONLINE       0     0     0
+
+errors: No known data errors
+
+
+######## Disk Failed and Disk Replace Procedure
 
 
 apt-get install lsscsi hdparm smartmontools lshw inxi
