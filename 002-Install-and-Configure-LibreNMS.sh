@@ -158,22 +158,27 @@ Step-(07)
     chown -R librenms:librenms librenms
     systemctl restart nginx
     
-    - Browse to http://server-ip-address/       -- follow instrunctions
-    
-    cd /opt/librenms  -- set correct env
-    
-    sudo vim .env     // delete old text and paste new
- Save+Exit
- 
- 
+   
     systemctl restart php8.1-fpm
     systemctl restart nginx
     systemctl status mysql nginx --lines=0
-    
-    
-    
-    
+      
     
 
     - Browse to http://server-ip-address/       -- follow instrunctions -- complete the setup
+    
+    
+    
+        cd /opt/librenms  -- set correct env
+    
+    sudo vim .env     // delete old text and paste new
+ Save+Exit
+
+
+
+reboot
+
+
+
+
     
