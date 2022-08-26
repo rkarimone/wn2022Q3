@@ -174,6 +174,9 @@ Step-(07)
  Save+Exit
 
 
+  cp /opt/librenms/librenms.nonroot.cron /etc/cron.d/librenms
+  cp /opt/librenms/misc/librenms.logrotate /etc/logrotate.d/librenms
+  sudo systemctl restart cron
 
 reboot
 
