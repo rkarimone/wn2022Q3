@@ -49,7 +49,7 @@ Step-(05)
     sudo add-apt-repository ppa:ondrej/php
     sudo apt update
 
-    sudo apt install curl composer fping git graphviz imagemagick mariadb-client mariadb-server mtr-tiny nginx-full nmap python3-memcache python3-mysqldb rrdtool snmp snmpd whois
+    sudo apt install curl composer acl python3-pip fping git graphviz imagemagick mariadb-client mariadb-server mtr-tiny nginx-full nmap python3-memcache python3-mysqldb rrdtool snmp snmpd whois
     sudo apt install php8.1-cli php8.1-common php8.1-curl php8.1-fpm php8.1-gd php8.1-gmp php8.1-intl php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-readline php8.1-snmp php8.1-xml php8.1-xmlrpc php8.1-zip 
 
 
@@ -154,12 +154,25 @@ Step-(07)
     cd /opt/librenms/
     sudo ./scripts/composer_wrapper.php install --no-dev
     cd ..
-    chown -R librensm:librenms librenms
+    chown -R librenms:librenms librenms
     systemctl restart nginx
     
     - Browse to http://server-ip-address/       -- follow instrunctions
     
     cd /opt/librenms  -- set correct env
+    
+    sudo vim .env     // delete old text and paste new
+ Save+Exit
+ 
+ 
+    systemctl restart php8.1-fpm
+    systemctl restart nginx
+    systemctl status mysql nginx --lines=0
+    
+    
+    
+    
+    
 
     - Browse to http://server-ip-address/       -- follow instrunctions -- complete the setup
     
