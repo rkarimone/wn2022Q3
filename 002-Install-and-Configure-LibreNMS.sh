@@ -71,6 +71,7 @@ Step-(06)
     
     sudo mysql -u root -p
         CREATE USER 'librenmsuser'@'localhost' IDENTIFIED BY 'wP_JoyBangla007';
+        CREATE DATABASE librenms;
         GRANT ALL ON librenms.* TO 'librenmsuser'@'localhost' IDENTIFIED BY 'wP_JoyBangla007' WITH GRANT OPTION;
         FLUSH PRIVILEGES;
         EXIT;
