@@ -156,8 +156,7 @@ Step-(07)
     sudo ./scripts/composer_wrapper.php install --no-dev
     cd ..
     chown -R librenms:librenms librenms
-    systemctl restart nginx
-    
+   
    
     systemctl restart php8.1-fpm
     systemctl restart nginx
