@@ -211,6 +211,14 @@ lxc.net.0.name = eth0
 
 
 
+lxc-start -n ubuntu2004
+lxc-attach -n ubuntu2004
+
+userdel -r ubuntu   // do it fist before enabling ssh ... 
+passwd root  // set root password
+
+
+
 sudo vim /usr/bin/lxc-zfs-copy
 
 #!/bin/bash
