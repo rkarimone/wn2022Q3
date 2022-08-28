@@ -164,6 +164,13 @@ sudo apt-mark hold libzfs4linux zfs-zed zfsutils-linux
 
 
 
+rm -fr /etc/update-motd.d/*
+
+
+
+
+
+
 
 
 
