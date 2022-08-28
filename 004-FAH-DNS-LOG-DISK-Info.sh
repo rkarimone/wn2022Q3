@@ -91,3 +91,91 @@ root@cyclone-dns1:~# ssacli ctrl slot=0 pd all show detail |grep Serial
          Serial Number: S44HNA0M809074
          Serial Number: S44HNA0M808637
 
+
+
+# ll /dev/disk/by-id/ |grep scsi
+lrwxrwxrwx 1 root root   9 Aug 28 16:38 scsi-0HP_LOGICAL_VOLUME_00000000 -> ../../sda
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-0HP_LOGICAL_VOLUME_00000000-part1 -> ../../sda1
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-0HP_LOGICAL_VOLUME_00000000-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-0HP_LOGICAL_VOLUME_00000000-part3 -> ../../sda3
+lrwxrwxrwx 1 root root   9 Aug 28 16:30 scsi-0HP_LOGICAL_VOLUME_01000000 -> ../../sdb
+lrwxrwxrwx 1 root root  10 Aug 28 16:30 scsi-0HP_LOGICAL_VOLUME_01000000-part1 -> ../../sdb1
+lrwxrwxrwx 1 root root  10 Aug 28 16:30 scsi-0HP_LOGICAL_VOLUME_01000000-part2 -> ../../sdb2
+lrwxrwxrwx 1 root root  10 Aug 28 16:30 scsi-0HP_LOGICAL_VOLUME_01000000-part3 -> ../../sdb3
+lrwxrwxrwx 1 root root   9 Aug 28 16:38 scsi-3600508b1001037383941424344451a00 -> ../../sda
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-3600508b1001037383941424344451a00-part1 -> ../../sda1
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-3600508b1001037383941424344451a00-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-3600508b1001037383941424344451a00-part3 -> ../../sda3
+lrwxrwxrwx 1 root root   9 Aug 28 16:30 scsi-3600508b1001037383941424344451b00 -> ../../sdb
+lrwxrwxrwx 1 root root  10 Aug 28 16:30 scsi-3600508b1001037383941424344451b00-part1 -> ../../sdb1
+lrwxrwxrwx 1 root root  10 Aug 28 16:30 scsi-3600508b1001037383941424344451b00-part2 -> ../../sdb2
+lrwxrwxrwx 1 root root  10 Aug 28 16:30 scsi-3600508b1001037383941424344451b00-part3 -> ../../sdb3
+lrwxrwxrwx 1 root root   9 Aug 28 16:38 scsi-SHP_LOGICAL_VOLUME_50123456789ABCDE -> ../../sda
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-SHP_LOGICAL_VOLUME_50123456789ABCDE-part1 -> ../../sda1
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-SHP_LOGICAL_VOLUME_50123456789ABCDE-part2 -> ../../sda2
+lrwxrwxrwx 1 root root  10 Aug 28 16:38 scsi-SHP_LOGICAL_VOLUME_50123456789ABCDE-part3 -> ../../sda3
+
+
+
+
+
+
+
+
+
+scsi-3600508b1001037383941424344451a00-part3
+scsi-3600508b1001037383941424344451b00-part3
+
+
+sudo zpool create -o ashift=12 -f zdata mirror \
+scsi-3600508b1001037383941424344451a00-part3 \
+scsi-3600508b1001037383941424344451b00-part3
+
+
+zpool list
+zpool status
+zfs list
+
+sudo zfs set sync=disabled zdata
+sudo zfs set compress=lz4 zdata
+sudo zfs set atime=off zdata
+sudo zfs set xattr=sa zdata
+sudo zfs set relatime=off zdata
+sudo zfs set acltype=posixacl zdata
+
+
+
+sudo zfs create zdata/iso
+sudo zfs create zdata/lxc
+sudo zfs create zdata/vms
+
+
+// Set ZFS RAM Cache...
+## 1073741824 = 1GB
+echo "options zfs zfs_arc_max=2147483648" > /etc/modprobe.d/zfs.conf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
