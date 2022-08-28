@@ -248,6 +248,9 @@ lxc-list
 lxc-zfs-copy $source-container $new-container
 
 
+lxc.start.auto = 1   // inside config file
+
+
 
 
 
