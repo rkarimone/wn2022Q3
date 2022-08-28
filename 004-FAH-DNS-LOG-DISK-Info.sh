@@ -188,17 +188,26 @@ sudo lxc-create -n centos8 -t download -- -a amd64 -d centos -r 8
 sudo lxc-create -n centos7 -t download -- -a amd64 -d centos -r 7
 
 
+cd /var/lib/lxc
+vim ubuntu2004/config
 
-
-# Network configuration
+# Network configuration // Interface1
 lxc.net.0.type = macvlan
 lxc.net.0.macvlan.mode = bridge
 lxc.net.0.flags = up
-lxc.net.0.link = eno1
+lxc.net.0.link = enp3s0f0
 lxc.net.0.name = eth0
-lxc.net.0.hwaddr = 00:16:3e:40:9e:4d
+#lxc.net.0.hwaddr = 00:16:3e:40:9e:4d
 #
 
+# Network configuration // Interface1
+#lxc.net.1.type = macvlan
+#lxc.net.1.macvlan.mode = bridge
+#lxc.net.1.flags = up
+#lxc.net.1.link = enp3s0f1
+#lxc.net.1.name = eth1
+#lxc.net.1.hwaddr = 00:16:3e:40:9e:4d
+#
 
 
 
