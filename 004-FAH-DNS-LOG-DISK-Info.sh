@@ -182,13 +182,10 @@ lxc-ls --fancy
 sudo chmod +x /usr/bin/lxc-list
 sudo lxc-list
 
-
-sudo lxc-create -t download -n ubuntu1804 -- -d ubuntu -r bionic -a amd64 --keyserver hkp://keyserver.ubuntu.com
-sudo lxc-create  -n ubuntu1804 -t download -- --no-validate -a amd64 -d ubuntu -r bionic
-sudo lxc-create  -n centos7 -t download -- --no-validate -a amd64 -d centos -r 7
-
-#sudo lxc-create -n centos8 -t download -- -d centos -r 8 -a amd64
-#sudo lxc-create -n centos7 -t download -- -d centos -r 7 -a amd64
+sudo lxc-create -t download -n ubuntu2004 -a amd64 -d ubuntu -r focal
+sudo lxc-create -n rocky8 -t download -- -a amd64 -d rockylinux -r 8
+sudo lxc-create -n centos8 -t download -- -a amd64 -d centos -r 8
+sudo lxc-create -n centos7 -t download -- -a amd64 -d centos -r 7
 
 
 
