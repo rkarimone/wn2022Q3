@@ -155,6 +155,9 @@ sudo zfs create zdata/vms
 echo "options zfs zfs_arc_max=2147483648" > /etc/modprobe.d/zfs.conf
 
 
+echo 2147483648 >> /sys/module/zfs/parameters/zfs_arc_max
+
+
 
 
 
