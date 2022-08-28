@@ -182,7 +182,7 @@ lxc-ls --fancy
 sudo chmod +x /usr/bin/lxc-list
 sudo lxc-list
 
-sudo lxc-create -t download -n ubuntu2004 -a amd64 -d ubuntu -r focal
+sudo lxc-create -t download -n ubuntu2004d -- -a amd64 -d ubuntu -r focal
 sudo lxc-create -n rocky8 -t download -- -a amd64 -d rockylinux -r 8
 sudo lxc-create -n centos8 -t download -- -a amd64 -d centos -r 8
 sudo lxc-create -n centos7 -t download -- -a amd64 -d centos -r 7
