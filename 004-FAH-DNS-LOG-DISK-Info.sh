@@ -168,6 +168,78 @@ rm -fr /etc/update-motd.d/*
 
 
 
+sudo apt autoremove -y --purge lxd lxd-client
+sudo apt install lxc lxc-templates openvswitch-switch
+
+
+
+sudo vim /usr/bin/lxc-list
+#!/bin/bash
+lxc-ls --fancy
+
+// "Save+Exit"
+
+sudo chmod +x /usr/bin/lxc-list
+sudo lxc-list
+
+
+sudo lxc-create -t download -n ubuntu1804 -- -d ubuntu -r bionic -a amd64 --keyserver hkp://keyserver.ubuntu.com
+sudo lxc-create  -n ubuntu1804 -t download -- --no-validate -a amd64 -d ubuntu -r bionic
+sudo lxc-create  -n centos7 -t download -- --no-validate -a amd64 -d centos -r 7
+
+#sudo lxc-create -n centos8 -t download -- -d centos -r 8 -a amd64
+#sudo lxc-create -n centos7 -t download -- -d centos -r 7 -a amd64
+
+
+
+
+# Network configuration
+lxc.net.0.type = macvlan
+lxc.net.0.macvlan.mode = bridge
+lxc.net.0.flags = up
+lxc.net.0.link = eno1
+lxc.net.0.name = eth0
+lxc.net.0.hwaddr = 00:16:3e:40:9e:4d
+#
+
+
+
+
+sudo vim /usr/bin/lxc-zfs-copy
+
+#!/bin/bash
+echo -e "\nStarting the cloning process... it may take 1-4 minutes please wait... ";
+lxc-copy -n $1 -N $2
+
+echo -e "\nConverting the container to zfs container... ";
+zfs create zdata/lxc/$2
+
+sleep 3
+rsync -av /var/lib/lxc/$2/ /zdata/lxc/$2
+rm -fr /var/lib/lxc/$2
+
+ln -sf /zdata/lxc/$2 /var/lib/lxc/
+
+echo "$2" > /var/lib/lxc/$2/rootfs/etc/hostname
+lxc-ls --fancy
+
+sleep 2
+echo -e "\nALL DONE... ";
+
+
+chmod +x /usr/bin/lxc-zfs-copy
+
+lxc-list
+
+lxc-zfs-copy $source-container $new-container
+
+
+
+
+
+
+
+
 
 
 
