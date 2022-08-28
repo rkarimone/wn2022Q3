@@ -142,6 +142,7 @@ sudo zfs set atime=off zdata
 sudo zfs set xattr=sa zdata
 sudo zfs set relatime=off zdata
 sudo zfs set acltype=posixacl zdata
+zpool set autoexpand=on zdata
 
 
 
@@ -156,6 +157,13 @@ echo "options zfs zfs_arc_max=2147483648" > /etc/modprobe.d/zfs.conf
 
 
 echo 2147483648 >> /sys/module/zfs/parameters/zfs_arc_max
+
+
+sudo apt-mark hold linux-generic linux-image-generic linux-headers-generic
+sudo apt-mark hold libzfs4linux zfs-zed zfsutils-linux 
+
+
+
 
 
 
