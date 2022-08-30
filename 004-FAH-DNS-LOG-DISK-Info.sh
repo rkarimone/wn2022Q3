@@ -256,7 +256,98 @@ lxc.start.auto = 1   // inside config file
 
 
 
+##### Install ReverseProxy with Docker
 
+
+
+
+apt-get remove docker docker.io containerd runc
+apt-get install  apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+sudo docker version
+sudo docker run docker/whalesay cowsay Hello-World!
+
+#https://github.com/docker/compose/releases
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.10.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.10.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
+sudo docker-compose --version
+
+
+
+sudo zfs create zdata/dockerstore
+sudo mkdir /zdata/dockerstore/wproxy
+
+
+mkdir /zdata/dockerstore/wproxy
+mkdir /zdata/dockerstore/wproxy/data
+mkdir /zdata/dockerstore/wproxy/letsencrypt
+mkdir /zdata/dockerstore/wproxy/data/mysql
+
+cd /opt/wproxy
+sudo vim  docker-compose.yaml 
+
+version: '3'
+services:
+  wproxyapp:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: wproxyapp
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    environment:
+      DB_MYSQL_HOST: "wproxydb"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "umysqldb"
+      DB_MYSQL_PASSWORD: "PwJonnoJalage"
+      DB_MYSQL_NAME: "nmysqldb"
+    volumes:
+      - /zdata/dockerstore/wproxy/data:/data
+      - /zdata/dockerstore/wproxy/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - wproxydb
+  wproxydb:wproxydb
+    image: 'jc21/mariadb-aria:latest'
+    container_name: wproxydb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 'PwJonnoJalage'
+      MYSQL_DATABASE: 'nmysqldb'
+      MYSQL_USER: 'umysqldb'
+      MYSQL_PASSWORD: 'PwJonnoJalage'
+    volumes:
+      - /zdata/dockerstore/wproxy/data/mysql:/var/lib/mysql
+
+
+
+sudo docker-compose up -d
+sudo docker-compose up --detach
+
+sudo docker-compose start
+sudo docker-compose stop
+
+
+Default Administrator User
+Email:    admin@example.com
+Password: changeme
+
+
+
+
+
+### Docker Management Gui
+
+sudo docker stop portainer && sudo docker rm portainer
+sudo docker pull portainer/portainer-ce:latest
+sudo docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 
 
 
