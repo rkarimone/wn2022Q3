@@ -312,7 +312,7 @@ services:
       - /zdata/dockerstore/wproxy/letsencrypt:/etc/letsencrypt
     depends_on:
       - wproxydb
-  wproxydb:wproxydb
+  wproxydb:
     image: 'jc21/mariadb-aria:latest'
     container_name: wproxydb
     restart: unless-stopped
