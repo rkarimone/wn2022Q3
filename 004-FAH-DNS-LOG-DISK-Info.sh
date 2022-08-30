@@ -282,15 +282,13 @@ sudo docker-compose --version
 
 
 sudo zfs create zdata/dockerstore
-sudo mkdir /zdata/dockerstore/wproxy
-
 
 mkdir /zdata/dockerstore/wproxy
 mkdir /zdata/dockerstore/wproxy/data
 mkdir /zdata/dockerstore/wproxy/letsencrypt
 mkdir /zdata/dockerstore/wproxy/data/mysql
 
-cd /opt/wproxy
+cd /zdata/dockerstore/wproxy
 sudo vim  docker-compose.yaml 
 
 version: '3'
