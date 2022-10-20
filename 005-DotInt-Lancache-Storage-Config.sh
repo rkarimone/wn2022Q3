@@ -118,6 +118,197 @@ sudo swapon /swap.img
 ### --dflix-server-disk-information
 
 
+apt update
+sudo lshw -class network -businfo
+sudo vim /etc/apt/sources.list
+apt update
+apt upgrade -y
+sudo apt install -y ifupdown vim net-tools
+sudo apt autoremove -y --purge netplan.io resolvconf
+rm -fr /etc/netplan
+
+ifconfig -a
+sudo vim /etc/default/grub
+sudo update-grub
+sudo vim /etc/network/interfaces
+ip link set ens1 up
+ethtool ens1
+apt install --install-recommends linux-generic-hwe-18.04 
+sudo systemctl stop systemd-resolved
+sudo systemctl disable systemd-resolved.service
+rm -fr /etc/resolv.conf
+touch /etc/resolv.conf
+echo "nameserver 1.0.0.3" > /etc/resolv.conf
+apt update
+sudo apt autoremove --purge unattended-upgrades landscape-common -y
+sudo apt install -y wget axel iftop htop vim iperf3 mtr mc bwm-ng snmpd openssh-server arping rclone sshfs rsync telnet pv build-essential
+sudo vim /etc/security/limits.conf
+vim /etc/sysctl.conf 
+sysctl -p
+apt install python3-pip
+pip3 install bpytop --upgrade
+bpytop 
+dpkg-reconfigure dash
+dpkg-reconfigure tzdata
+rm -fr /etc/update-motd.d/*
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+sudo apt remove --assume-yes --purge apparmor
+sudo apt remove --purge lxd lxd-client
+sudo apt autoremove --purge unattended-upgrades
+htop
+sudo swapoff /swapfile
+sudo fallocate -l 32G /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+htop
+sudo vim /etc/ssh/sshd_config
+passwd root
+cat /etc/network/interfaces
+ifconfig ens1
+reboot
+exit
+ifconfig 
+ethtool ens1
+sudo add-apt-repository ppa:jonathonf/zfs
+sudo apt install zfsutils-linux gdisk
+zpool list
+zfs list
+sudo fdisk -l |grep sd* |grep GiB
+sudo fdisk -l |grep sd* |grep TiB
+sudo fdisk -l |grep sd* |grep TiB | wc -l
+ll /dev/disk/by-id/
+ll /dev/disk/by-id/ 
+ll /dev/disk/by-id/ |more
+df -h
+ll /dev/disk/by-id/ |more
+sudo fdisk -l |grep sd* |grep TiB
+sudo fdisk -l |grep sd* | more
+cd /dev/disk/by-id/
+ls
+ll
+ll |more
+cd
+sudo apt-get install hdparm
+sudo apt-get install smartmontools
+sudo apt-get install lshw
+sgdisk --zap-all /dev/sda
+sgdisk --zap-all /dev/sdb
+sgdisk --zap-all /dev/sdc
+sgdisk --zap-all /dev/sdd
+sgdisk --zap-all /dev/sde
+sgdisk --zap-all /dev/sdf
+sgdisk --zap-all /dev/sdg
+sgdisk --zap-all /dev/sdh
+sgdisk --zap-all /dev/sdi
+sgdisk --zap-all /dev/sdj
+sgdisk --zap-all /dev/sdk
+sgdisk --zap-all /dev/sdl
+sgdisk --zap-all /dev/sdw
+sgdisk --zap-all /dev/sdx
+sgdisk --zap-all /dev/sdy
+sgdisk --zap-all /dev/sdz
+sgdisk --zap-all /dev/sdaa
+sgdisk --zap-all /dev/sdab
+sudo zpool create -o ashift=12 -f volume1 \ 
+raidz scsi-35000cca26c176cf4 scsi-35000cca26c160054 scsi-35000cca26c19ebe0 scsi-35000cca26c1a2480 scsi-35000cca26c16005c scsi-35000cca26c19dff0 raidz scsi-35000cca26c19fcfc scsi-35000cca2663df500 scsi-35000cca26c19d04c scsi-35000cca26c18f0a0 scsi-35000cca26c182b98 scsi-35000cca2663cc258 raidz scsi-35000cca2663ace38 scsi-35000cca26c1620a8 scsi-35000cca266a9971c scsi-35000cca26c1827e4 scsi-35000cca26c18a994 \
+sudo zpool create -o ashift=12 -f volume1 raidz scsi-35000cca26c176cf4 scsi-35000cca26c160054 scsi-35000cca26c19ebe0 scsi-35000cca26c1a2480 scsi-35000cca26c16005c scsi-35000cca26c19dff0 raidz scsi-35000cca26c19fcfc scsi-35000cca2663df500 scsi-35000cca26c19d04c scsi-35000cca26c18f0a0 scsi-35000cca26c182b98 scsi-35000cca2663cc258 raidz scsi-35000cca2663ace38 scsi-35000cca26c1620a8 scsi-35000cca266a9971c scsi-35000cca26c1827e4 scsi-35000cca26c18a994 scsi-35000cca26c1a0e28
+zpool status
+zfs list
+sgdisk --zap-all /dev/sdm
+sgdisk --zap-all /dev/sdn
+sgdisk --zap-all /dev/sdo
+sgdisk --zap-all /dev/sdq
+sgdisk --zap-all /dev/sdr
+sgdisk --zap-all /dev/sds
+sgdisk --zap-all /dev/sdt
+sgdisk --zap-all /dev/sdu
+sgdisk --zap-all /dev/sdv
+sudo zpool add -f volume1 cache scsi-3500143804074fa4c scsi-3500143804074fa4d scsi-3500143804074fa4e scsi-35001438040750cc0 scsi-35001438040750cc1 scsi-35001438040750cc2 scsi-35001438040750cc3 scsi-35001438040750cc4 scsi-35001438040750cc5
+zpool status
+zfs list
+zfs set sync=disabled volume1
+zfs set compress=lz4 volume1
+zfs set atime=off volume1
+zfs set xattr=sa volume1
+zfs set relatime=off volume1
+zfs set acltype=posixacl volume1
+apt install nginx nginx-extras
+htop
+cd /etc/nginx/
+ls
+cp nginx.conf nginx.conf.orig
+echo "" > nginx.conf
+vim nginx.conf
+zfs list
+zfs create volume1/data
+zfs list
+vim nginx.conf
+nginx -t
+systemctl restart nginx
+
+cd /volume1/
+ls
+cd data/
+ls
+mv dot-etc .etc
+mv fancyetc.tar /opt/
+ll
+chmod +x .etc
+touch kk zz
+mkdir Movies
+mkdir Games
+cd /etc/nginx/sites-enabled/
+ll
+cd ..
+ls
+vim nginx.conf
+systemctl rstart nginx
+systemctl restart nginx
+tail -f /var/log/ac
+tail -f /var/log/nginx/access.log 
+cd /volume1/data/
+
+cp -r .etc /volume1/data/
+cd /volume1/data/
+ls
+cd .etc/
+ls
+cd nf
+cd nginx/
+ls
+cd fancyindex_theme/
+ls
+vim header.html 
+vim index.html 
+ls
+vim fheader.html 
+ls
+cd assets/
+sl
+ls
+cd css/
+ls
+vim style.css 
+vim findex.css 
+cd ..
+ls
+cd ..
+ls
+cd css/
+ls
+vim style.css 
+cd
+vim /etc/network/interfaces
+cat /etc/network/interfaces
+ifconfig ens1:0 172.16.172.150/30
+zpool status
+echo 'performance' > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+vim /usr/bin/cpu-freq.sh
+chmod +x /usr/bin/cpu-freq.sh
+
+
+##################################
 
   *-disk:0
        description: SCSI Disk
