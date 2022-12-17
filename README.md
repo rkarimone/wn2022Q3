@@ -26,6 +26,7 @@ CPU:       Topology: 6-Core model: 11th Gen Intel Core i5-11400 bits: 64 type: M
   Handle 0x0044, DMI type 17, 92 bytes
 
   `Memory Device`
+```	
 	Array Handle: 0x003B
 	Error Information Handle: Not Provided
 	Total Width: 64 bits
@@ -58,3 +59,4 @@ CPU:       Topology: 6-Core model: 11th Gen Intel Core i5-11400 bits: 64 type: M
 	Volatile Size: 16 GB
 	Cache Size: None
 	Logical Size: None
+```
