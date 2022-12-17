@@ -60,3 +60,6 @@ CPU:       Topology: 6-Core model: 11th Gen Intel Core i5-11400 bits: 64 type: M
 	Cache Size: None
 	Logical Size: None
 ```
+
+	
+	rclone -v sync --modify-window 15s --skip-links --ignore-errors /home/rkarim/ P300H/SSD250/
