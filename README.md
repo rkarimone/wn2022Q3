@@ -63,3 +63,21 @@ CPU:       Topology: 6-Core model: 11th Gen Intel Core i5-11400 bits: 64 type: M
 
 	
 	rclone -v sync --modify-window 15s --skip-links --ignore-errors /home/rkarim/ P300H/SSD250/
+	
+	
+	
+```
+
+
+[Interface]
+Address = 172.16.198.11/23
+DNS = 1.0.0.3
+PrivateKey = gAMPKQb8gV8RIsD8Z4GFX2orQ/QDzoIyT3guoYHajXY=
+
+[Peer]
+PublicKey = 1jSKzbmoVGYHYq0WVJI1uZUAEYY3I9/JY8waH3/xZzQ=
+PresharedKey = oR0bak6I/pnFxsKj/ZQNBu8B8mfAi81FR87xwZ5H8M4=
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = 103.144.200.13:8443
+PersistentKeepalive = 25
+
